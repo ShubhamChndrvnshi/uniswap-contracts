@@ -1,0 +1,9 @@
+{
+  "name": "uniswap-contracts",
+  "version": "1.0.0",
+  "description": "Uniswap contracts for defi",
+  "main": "index.js",
+  "repository": "https://github.com/ShubhamChndrvnshi/uniswap-contracts.git",
+  "author": "ShubhamChndrvnshi <shubham.chndrvnshi@gmail.com>",
+  "license": "MIT"
+}
