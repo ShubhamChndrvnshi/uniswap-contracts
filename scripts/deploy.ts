@@ -1,18 +1,17 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+  
+  if(!process.env.PAIR) throw new Error("PAIR address is required")
 
-  const lockedAmount = ethers.utils.parseEther("1");
+  const PAIR: string = String(process.env.PAIR);
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+  const UniswapV2Twap = await ethers.getContractFactory("UniswapV2Twap");
+  const uniswapV2Twap = await UniswapV2Twap.deploy(PAIR);
 
-  await lock.deployed();
+  await uniswapV2Twap.deployed();
 
-  console.log(`Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`);
+  console.log(`UniswapV2Twap deployed to ${uniswapV2Twap.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

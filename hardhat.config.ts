@@ -1,8 +1,27 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import * as dotenv from "dotenv";
+dotenv.config({ path: __dirname+'/.env' });
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.9",
+  defaultNetwork: "hardhat",
+  networks: {
+    hardhat: {
+      forking: {
+        url: "https://cloudflare-eth.com",
+      },
+      chainId: 1337,
+    },
+  },
+  solidity: {
+    version: "0.6.6",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
 };
 
 export default config;
